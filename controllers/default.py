@@ -83,6 +83,13 @@ def view_sequence():
     sequence = db.sequence[request.args(0)]
     images = db(db.sequence_image.sequence==sequence).select()
     reports = db(db.sequence_report.sequence==sequence).select()
+    note_form = SQLFORM(db.sequence_note,fields=['text'])
+    note_form.vars.sequence = sequence
+
+    if note_form.process().accepted:
+        session.flash = 'note added'
+
+    notes = db(db.sequence_note.sequence==sequence).select()
     return locals()
     
 def process_data():

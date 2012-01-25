@@ -44,6 +44,16 @@ db.define_table('sequence',
 db.define_table('sequence_archive',db.sequence,Field('current_record','reference sequence',readable=False,writable=False))
 
 ########################################
+db.define_table('sequence_note',
+    Field('sequence', type='reference sequence',
+          label=T('Scan')),
+    Field('text', type='text'),
+    auth.signature,
+    format='%(sequence)s',
+    migrate=settings.migrate)
+
+db.define_table('sequence_note_archive',db.sequence_note,Field('current_record','reference sequence_note',readable=False,writable=False))
+########################################
 db.define_table('sequence_report',
     Field('sequence', type='reference sequence',
           label=T('Scan')),
