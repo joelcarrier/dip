@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+<table>
+  {{for sequence in sequences:}}
+  <tr>
+    <td>
+      {{=sequence.date}}
+    </td>
+    <td>
+      {{=sequence.name}}
+    </td>
+    <td>
+      <a href="{{=URL(f='view_sequence',args=[sequence.id])}}">VIEW</a>
+    </td>
+  {{pass}}
+  </tr>
+</table>
+
